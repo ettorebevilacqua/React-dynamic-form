@@ -14,19 +14,16 @@ const mock1 = {
   b: [3, 4, { c: "pippo", d: [1, 2, 3] }]
 };
 
-const mock = {
-  a: { c: "", d: [1, 2, 3] }
-};
-
 const addComp = (component: string, props: any): any => ({
   component,
   props
 });
 
-export const onPropRebuild = (acc: Array<any> = []) => (
+export const onPropRebuild = (
   prop: KeyProp,
-  val: entity.JSONValue
-): void => {
+  val: entity.JSONValue,
+  acc: Array<any>
+): any => {
   const addChildren = (accT: Config): Array<any> => {
     // if (!accT) return [];
     accT.children = [];
@@ -43,11 +40,10 @@ export const onPropRebuild = (acc: Array<any> = []) => (
     : addChildren(acc as Config);
   accObj.push(elem);
   acc = typeof val !== "object" ? accObj : elem;
+  return acc;
 };
 
-let state: Array<any> = [];
-scanner(mock1, [], onPropRebuild(state));
-const config = state;
+const config = scanner(mock1, [], onPropRebuild);
 console.log("xq", config);
 
 /*

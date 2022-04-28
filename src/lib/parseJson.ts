@@ -4,20 +4,16 @@ export const isPrimitive = (val: entity.JSONValue) =>
 
 export type KeyProp = string | number;
 
-export type PropEvent = (
-  prop: KeyProp,
-  val: entity.JSONValue,
-  acc: any
-) => void;
+export type PropEvent = (prop: KeyProp, val: entity.JSONValue, acc: any) => any;
 
 const scan = (
   cb: PropEvent,
   obj: entity.JSONObject | entity.JSONArray,
   acc: any
-): void => {
+): any => {
   const objT = obj as any;
-  Object.keys(obj).map((key) =>
-    obj.hasOwnProperty(key) ? cb(key, objT[key], acc) : acc
+  return Object.keys(obj).map((key) =>
+    obj.hasOwnProperty(key) ? (acc = cb(key, objT[key], acc)) : acc
   );
 };
 
@@ -36,7 +32,7 @@ export function scanner(
       : scan(_onProp, val as entity.JSONObject, onElem(prop, val, acc));
 
   scan(_onProp, obj, acc);
-  // return acc;
+  return acc;
 }
 
 /*
