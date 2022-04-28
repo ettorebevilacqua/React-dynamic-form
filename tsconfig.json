@@ -1,6 +1,7 @@
 {
     "include": [
-        "./src/**/*"
+        "./src/**/*",
+        "global.d.ts"
     ],
     "compilerOptions": {
         "strict": true,

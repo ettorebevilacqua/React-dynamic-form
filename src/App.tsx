@@ -1,12 +1,15 @@
 import "./styles.css";
-import * as entity from "./def/entity";
+import * as parser from "./lib/parseJson";
 
-console.log(entity);
+import DinamicExample from "./comp/dinamic.example";
+import FormExample from "./comp/form.example";
+
 export default function App() {
   return (
     <div className="App">
       <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2>
+      <FormExample />
     </div>
   );
 }
