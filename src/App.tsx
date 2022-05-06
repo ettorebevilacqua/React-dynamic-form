@@ -2,7 +2,7 @@ import "./styles.css";
 import * as parser from "./lib/parseJson";
 
 import DinamicExample from "./comp/dinamic.example";
-import FormExample from "./comp/form.example";
+import FormExample from "./lib/form.example";
 
 export default function App() {
   return (
